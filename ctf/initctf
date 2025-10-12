@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Get the current year
+current_year=$(date +%Y)
+
+# Define the base directory
+base_dir=~/ctf/$current_year
+
+# Check if the base directory exists, if not create it
+if [ ! -d "$base_dir" ]; then
+  mkdir -p "$base_dir"
+fi
+
+# Create the ctf directory
+ctf_dir=$base_dir/$1
+mkdir -p "$ctf_dir"
+
+# Add it to bookmarks
+echo "$ctf_dir" >> ~/.config/gtk-3.0/bookmarks
+
+# Update the currctf file with the new ctf directory path
+echo "$ctf_dir" > ~/ctf/currctf
+
+# Create additional directories
+mkdir -p "$ctf_dir"/{web,misc,pwn,rev,crypto}
