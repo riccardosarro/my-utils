@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# List all active Docker containers with detailed information (excluding the header)
+echo "Listing all active Docker containers..."
+docker ps --format "{{.ID}}\t{{.Names}}\t{{.Image}}\t{{.Command}}\t{{.Ports}}" | nl -v 0
+
+# Prompt the user to choose a container
+read -p "Enter the number of the container to connect to: " choice
+
+# Extract the container ID for the chosen number
+container_id=$(docker ps --format "{{.ID}}" | sed -n "$((choice + 1))p")
+
+# Validate the selection
+if [ -z "$container_id" ]; then
+  echo "Invalid selection. Please choose a valid container number."
+  exit 1
+fi
+
+# Execute the command to enter the chosen container
+echo "Connecting to container with ID: $container_id"
+docker exec -it "$container_id" /bin/bash
