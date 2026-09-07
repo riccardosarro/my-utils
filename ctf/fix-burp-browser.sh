@@ -3,7 +3,7 @@
 # Script to automatically set ownership and permissions for Burp Suite's chrome-sandbox.
 
 # --- Configuration ---
-BURP_BASE_DIR="/home/REDACTED/ctftools/BurpSuiteCommunity"
+BURP_BASE_DIR="$HOME/ctftools/BurpSuiteCommunity"
 TARGET_FILE="chrome-sandbox"
 REQUIRED_OWNER="root"
 REQUIRED_MODE="4755"
